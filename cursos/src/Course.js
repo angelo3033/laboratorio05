@@ -1,18 +1,13 @@
-import React from 'react'
-import Part from './Part'
+import Content from "./Content"
+import Header from "./Header"
 
 const Course = (props) => {
-	return (
-		<div>
-			{props.parts.map((part) => {
-			    return(
-			        <Part
-			          part={part}
-			        />
-			    )
-			})}
-		</div>
-	)
+  	return(
+	  	<div>
+		  	<Header name={props.course.name}/>
+      		<Content parts={props.course.parts} />
+	  	</div>
+  	)
 }
 
 export default Course

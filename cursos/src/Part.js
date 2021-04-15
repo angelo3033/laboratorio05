@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Part = (props) => {
-
-	return (
-		<div>
-			<p>{props.part.name} {props.part.exercises} {props.part.id}</p>
-		</div>
-	)
-}
+const Part = ({part}) => {
+    return(
+        <div>
+            <h4>{part.name}</h4>
+            <p>{part.exercises}</p>
+        </div>
+    )
+} 
 
 export default Part
