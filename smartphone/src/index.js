@@ -1,17 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  const [ persons, setPersons ] = useState([
+    { name: 'Arto Hellas' }
+  ]) 
+  const [ newName, setNewName ] = useState('')
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  const handleChange = ({target}) => {
+    setNewName(target.value)
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    setPersons([...persons, {name: newName}])
+    setNewName('')
+  }
+
+  return (
+    <div>
+      <h2>Phonebook</h2>
+      <form onSubmit={handleClick}>
+        <div>
+          name: <input value={newName} onChange={handleChange}/>
+        </div>
+        <div>
+          <button type="submit">add</button>
+        </div>
+      </form>
+      <h2>Numbers</h2>
+      {persons.map(person => {
+        return(
+          <h4 key={person.name}>{person.name}</h4>
+        )
+      })}
+    </div>
+  )
+}
+
+export default App
+
+ReactDOM.render(<App />, document.getElementById('root'))
